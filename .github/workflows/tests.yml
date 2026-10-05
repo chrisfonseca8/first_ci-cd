@@ -1,27 +1,28 @@
-
 name: TestFile
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
-      - name: setup Node.js
+
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-         node-version: ${{ matrix.node-version }}
-         cache: 'npm'
-     
+          node-version: 22
+          cache: npm
+
       - name: Install dependencies
         run: npm ci
 
